@@ -1,29 +1,18 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
+	"math"
 )
 
+func equal(a, b float64) bool {
+	return math.Nextafter(a, b) == b
+}
+
 func main() {
-	stdin := bufio.NewReader(os.Stdin)
+	var a float64 = 0.1
+	var b float64 = 0.2
+	var c float64 = 0.3
 
-	var a int
-	var b int
-
-	n, err := fmt.Scanln(&a, &b)
-	if err != nil {
-		fmt.Println(err)
-		stdin.ReadString('\n')
-	} else {
-		fmt.Println(n, a, b)
-	}
-	n, err = fmt.Scanln(&a, &b)
-	if err != nil {
-		fmt.Println(err)
-		stdin.ReadString('\n')
-	} else {
-		fmt.Println(n, a, b)
-	}
+	fmt.Printf("%0.18f == %0.18f : %v\n", c, a+b, equal(a+b, c))
 }
