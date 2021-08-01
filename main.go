@@ -1,18 +1,17 @@
 package main
 
-import (
-	"fmt"
-	"math"
-)
+import "fmt"
 
-func equal(a, b float64) bool {
-	return math.Nextafter(a, b) == b
+func F(n int) int {
+	// 여기에 탈출 조건을 채우세요.
+	if n < 2 {
+		return n
+	}
+
+	return F(n-2) + F(n-1)
 }
 
 func main() {
-	var a float64 = 0.1
-	var b float64 = 0.2
-	var c float64 = 0.3
-
-	fmt.Printf("%0.18f == %0.18f : %v\n", c, a+b, equal(a+b, c))
+	// 피보나치 수열 9번째 값을 출력합니다.
+	fmt.Println(F(9))
 }
