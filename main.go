@@ -1,15 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unsafe"
+)
 
-func ChangeArray(arr [5]int) {
-	arr[3] = 3000
+type Padding struct {
+	A int8    // 1
+	G int8    // 1
+	D uint16  // 2
+	F float32 // 4
+	B int     // 8
+	C float64 // 8
+	E int     // 8
 }
 
 func main() {
-	a := [5]int{1, 2, 3, 4, 5}
-
-	ChangeArray(a)
-
-	fmt.Println(a[3])
+	padding := Padding{1, 2, 3, 4, 5, 6, 7}
+	fmt.Println(unsafe.Sizeof(padding))
 }
