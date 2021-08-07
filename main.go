@@ -1,24 +1,40 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
-type Actor struct {
-	Name  string
-	HP    int
-	Speed float64
+func ToUpper1(str string) string {
+	var rst string
+	for _, c := range str {
+		if c >= 'a' && c <= 'z' {
+			rst += string('A' + (c - 'a'))
+			fmt.Printf("%p\n", &rst)
+		} else {
+			rst += string(c)
+		}
+	}
+	return rst
 }
 
-func NewActor(name string, hp int, speed float64) *Actor {
-	actor := Actor{
-		name,
-		hp,
-		speed,
+func ToUpper2(str string) string {
+	var builder strings.Builder
+	for _, c := range str {
+		if c >= 'a' && c <= 'z' {
+			builder.WriteRune('A' + (c - 'a'))
+
+		} else {
+			builder.WriteRune(c)
+		}
 	}
-	return &actor
+	return builder.String()
 }
 
 func main() {
-	var actor = NewActor("금토끼", 99, 100)
-	fmt.Println(actor.Speed)
-	fmt.Println(actor.Name)
+	var str string = "Hello World"
+
+	fmt.Println(ToUpper1(str))
+	fmt.Println(ToUpper2(str))
+
 }
